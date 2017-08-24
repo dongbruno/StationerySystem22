@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Aug 24, 2017 9:35:40 PM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="SSDB" dynamic-insert="false" dynamic-update="false" mutable="true" name="citi.hibernate.entity.Systeminfo" optimistic-lock="version" polymorphism="implicit" schema="PUBLIC" select-before-update="false" table="SYSTEMINFO">
+        <id name="systemid" type="int">
+            <column name="SYSTEMID"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="note" optimistic-lock="true" type="string" unique="false">
+            <column name="NOTE"/>
+        </property>
+        <property generated="never" lazy="false" name="startdate" optimistic-lock="true" type="date" unique="false">
+            <column length="8" name="STARTDATE"/>
+        </property>
+        <property generated="never" lazy="false" name="deadline" optimistic-lock="true" type="date" unique="false">
+            <column length="8" name="DEADLINE"/>
+        </property>
+        <property generated="never" lazy="false" name="update" optimistic-lock="true" type="date" unique="false">
+            <column length="8" name="UPDATE"/>
+        </property>
+        <property generated="never" lazy="false" name="operator" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="OPERATOR"/>
+        </property>
+    </class>
+</hibernate-mapping>

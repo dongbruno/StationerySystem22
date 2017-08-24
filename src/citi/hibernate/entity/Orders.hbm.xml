@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Aug 24, 2017 9:35:40 PM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="SSDB" dynamic-insert="false" dynamic-update="false" mutable="true" name="citi.hibernate.entity.Orders" optimistic-lock="version" polymorphism="implicit" schema="PUBLIC" select-before-update="false" table="ORDERS">
+        <id name="ordersid" type="string">
+            <column length="16" name="ORDERSID"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="citi.hibernate.entity.Staff" embed-xml="true" fetch="select" insert="true" name="staff" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column length="25" name="SOEID" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="citi.hibernate.entity.Stationery" embed-xml="true" fetch="select" insert="true" name="stationery" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="STATIONERYID" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="quantity" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="QUANTITY"/>
+        </property>
+        <property generated="never" lazy="false" name="update" optimistic-lock="true" type="date" unique="false">
+            <column length="8" name="UPDATE"/>
+        </property>
+    </class>
+</hibernate-mapping>

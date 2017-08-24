@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Aug 24, 2017 9:35:40 PM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="SSDB" dynamic-insert="false" dynamic-update="false" mutable="true" name="citi.hibernate.entity.Staff" optimistic-lock="version" polymorphism="implicit" schema="PUBLIC" select-before-update="false" table="STAFF">
+        <id name="soeid" type="string">
+            <column length="15" name="SOEID"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="name" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="NAME"/>
+        </property>
+        <property generated="never" lazy="false" name="location" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="LOCATION"/>
+        </property>
+        <property generated="never" lazy="false" name="unit" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="UNIT"/>
+        </property>
+        <property generated="never" lazy="false" name="team" optimistic-lock="true" type="string" unique="false">
+            <column length="25" name="TEAM"/>
+        </property>
+        <property generated="never" lazy="false" name="isadmin" optimistic-lock="true" type="java.lang.Boolean" unique="false">
+            <column name="ISADMIN"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="orderses" optimistic-lock="true" sort="unsorted" table="ORDERS">
+            <key on-delete="noaction">
+                <column length="25" name="SOEID" not-null="true"/>
+            </key>
+            <one-to-many class="citi.hibernate.entity.Orders" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>
