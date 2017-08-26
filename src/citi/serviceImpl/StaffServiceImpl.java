@@ -29,8 +29,13 @@ StaffDao staffDaoImpl;
 		Staff staff = (Staff) session.getAttribute("staff");
 		String soeid = (String) session.getAttribute("soeid");
 		HibernateUtil.openSession();
+		Staff dbStaff = staffDaoImpl.findBySoeid(soeid);
 		if(staffDaoImpl.findBySoeid(soeid) == null) {
 			staffDaoImpl.insertStaff(staff);
+		}else if(dbStaff.isNeedUpdate(staff)){
+			staffDaoImpl.update(staff);
+		}else {
+			staff = dbStaff;
 		}
 		HibernateUtil.closeSession();
 		return staff;
@@ -49,8 +54,13 @@ StaffDao staffDaoImpl;
 		Staff staff = (Staff) session.getAttribute("staff");
 		String soeid = (String) session.getAttribute("soeid");
 		HibernateUtil.openSession();
+		Staff dbStaff = staffDaoImpl.findBySoeid(soeid);
 		if(staffDaoImpl.findBySoeid(soeid) == null) {
 			staffDaoImpl.insertStaff(staff);
+		}else if(dbStaff.isNeedUpdate(staff)){
+			staffDaoImpl.update(staff);
+		}else {
+			staff = dbStaff;
 		}
 		HibernateUtil.closeSession();
 		return staff;
@@ -58,10 +68,10 @@ StaffDao staffDaoImpl;
 
 
 	@Override
-	public Systeminfo getSystemInfo() {
+	public Systeminfo getSysteminfo() {
 		// TODO Auto-generated method stub
 		HibernateUtil.openSession();
-		Systeminfo systemInfo = staffDaoImpl.getSystemInfo();
+		Systeminfo systemInfo = staffDaoImpl.getSysteminfo();
         HibernateUtil.closeSession();
         return systemInfo;
 	}

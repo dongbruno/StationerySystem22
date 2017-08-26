@@ -8,7 +8,7 @@ public interface StaffService {
 //servlet-api.jar
 	Staff getStaff(HttpSession session);
 	
-	Systeminfo getSystemInfo();
+	Systeminfo getSysteminfo();
 	
 	boolean isExpired();
 

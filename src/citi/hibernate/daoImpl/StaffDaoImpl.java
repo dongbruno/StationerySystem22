@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.springframework.stereotype.Repository;
@@ -21,15 +22,10 @@ import citi.serviceImpl.StaffServiceImpl;
 @Repository
 public class StaffDaoImpl implements StaffDao {
 	private static final Log log = LogFactory.getLog(StaffDaoImpl.class);
-	@Override
-	public Staff getStaff(HttpSession session) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	@Override
-	public Systeminfo getSystemInfo() {
+	public Systeminfo getSysteminfo() {
 		// TODO Auto-generated method stub
 		Session sessionHibernate = HibernateUtil.getSession();
 		String queryString = "from Systeminfo s where s.systemid = ?";
@@ -56,6 +52,19 @@ public class StaffDaoImpl implements StaffDao {
 		String queryString = "from Staff s where s.soeid = ?";
 		Staff staff = (Staff) sessionHibernate.createQuery(queryString).setParameter(0, soeid).uniqueResult();
 		return staff;
+	}
+
+
+	@Override
+	public boolean update(Staff staff) {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSession();
+		session.beginTransaction();
+		String queryString = "update Staff s set s.name = ?, s.location = ?, s.unit = ?, s.team = ? where s.soeid = ?";
+		Query query = session.createQuery(queryString).setParameter(0, staff.getName()).setParameter(1, staff.getLocation()).setParameter(2, staff.getUnit()).setParameter(3, staff.getTeam()).setParameter(4, staff.getSoeid());
+		query.executeUpdate();
+		session.getTransaction().commit();
+		return true;
 	}
 
 }

@@ -16,7 +16,7 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
-		String queryString = "update SystemInfo s set s.note = ?, s.date = ?, s.operator = ? where s.systemId = ?";
+		String queryString = "update Systeminfo s set s.note = ?, s.date = ?, s.operator = ? where s.systemId = ?";
 		Query query = session.createQuery(queryString).setParameter(0, note).setParameter(1, new Date()).setParameter(2, soeid).setParameter(3, 1);
 		query.executeUpdate();
 		session.getTransaction().commit();
@@ -31,7 +31,7 @@ public class AdminDaoImpl implements AdminDao {
 		}else{
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
-		String queryString = "update SystemInfo s set s.deadline = ?, s.date = ?, s.operator = ? where s.systemId = ?";
+		String queryString = "update Systeminfo s set s.deadline = ?, s.date = ?, s.operator = ? where s.systemId = ?";
 		Query query = session.createQuery(queryString).setParameter(0, toDateFromStr(deadline)).setParameter(1, new Date()).setParameter(2, soeid).setParameter(3, 1);
 		query.executeUpdate();
 		session.getTransaction().commit();

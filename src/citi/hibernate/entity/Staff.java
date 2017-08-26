@@ -97,5 +97,13 @@ public class Staff implements java.io.Serializable {
 	public void setOrderses(Set orderses) {
 		this.orderses = orderses;
 	}
+	public boolean isNeedUpdate(Staff staff) {
+        if(this.name.equals(staff.name)&& this.location.equals(staff.location) && this.unit.equals(staff.unit)&& this.team.equals(staff.team)) {
+        	return false;
+        }else {
+        	return true;
+        }
+		
+	}
 
 }

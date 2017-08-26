@@ -8,11 +8,12 @@ import citi.hibernate.entity.Staff;
 import citi.hibernate.entity.Systeminfo;
 
 public interface StaffDao {
-	Staff getStaff(HttpSession session);
 
 	boolean insertStaff(Staff staff);
 	
 	Staff findBySoeid(String soeid);
 	
-	Systeminfo getSystemInfo();
+	Systeminfo getSysteminfo();
+
+	boolean update(Staff staff);
 }

@@ -45,12 +45,12 @@ private static final Log logger = LogFactory.getLog(StaffController.class);
 		return result;
 	}
 	
-	@RequestMapping(value = "/getSystemInfo", method = RequestMethod.GET)
+	@RequestMapping(value = "/getSysteminfo", method = RequestMethod.GET)
 	@ResponseBody
 	public Object getDeadline(){
-		Systeminfo result = staffServiceImpl.getSystemInfo();
+		Systeminfo result = staffServiceImpl.getSysteminfo();
 		if(logger.isDebugEnabled()){
-			logger.debug("getSystemInfo="+result);
+			logger.debug("getSysteminfo="+result);
 		}
 		return result;
 	}
