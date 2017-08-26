@@ -51,17 +51,11 @@ public class StaffDaoImpl implements StaffDao {
 		session.getTransaction().commit();
 		return true;
 	}
-	public List findByExample(Staff instance) {
-		log.debug("finding Staff instance by example");
-		try {
-			List results = HibernateUtil.getSession().createCriteria("citi.hibernate.entity.Staff")
-					.add(Example.create(instance)).list();
-			log.debug("find by example successful, result size: " + results.size());
-			return results;
-		} catch (RuntimeException re) {
-			log.error("find by example failed", re);
-			throw re;
-		}
+	public Staff findBySoeid(String soeid) {
+		Session sessionHibernate = HibernateUtil.getSession();
+		String queryString = "from Staff s where s.soeid = ?";
+		Staff staff = (Staff) sessionHibernate.createQuery(queryString).setParameter(0, soeid).uniqueResult();
+		return staff;
 	}
 
 }

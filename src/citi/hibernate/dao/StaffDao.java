@@ -12,7 +12,7 @@ public interface StaffDao {
 
 	boolean insertStaff(Staff staff);
 	
-	List findByExample(Staff instance);
+	Staff findBySoeid(String soeid);
 	
 	Systeminfo getSystemInfo();
 }

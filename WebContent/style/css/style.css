@@ -168,13 +168,12 @@ ul.top-nav li span {
 	top: 15px;
 	position: absolute;
 }
-
 .top-nav ul li.cart {
 	position: relative;
 	top: 15px;
 	width: 38px;
 	height: 35px;
-	left: 350px;
+	left: 480px;
 	display: inline-block;
 	background: url(../images/cart.png) no-repeat 0px 6px;
 	background-size: 100% 100%;
@@ -182,7 +181,7 @@ ul.top-nav li span {
 .top-nav ul li.welcome {
 	position: relative;
 	top: 25px;
-	left: 450px;
+	left: 535px;
 	display: inline-block;
 	background-size: 100% 100%;
 }

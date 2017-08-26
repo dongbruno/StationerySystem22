@@ -45,14 +45,14 @@ define(['app'], function(app){
 		 }, function(err){
 			 console.log(err);
 		 });
-		$http.get("getStaff", {
-			 "Accept": "application/json;charset=utf-8",
-			 "Accept-Charset": "charset=utf-8"
-		 }).then(function(response){
-			 $scope.$root.user = response.data;
-		 }, function(err){
-			 console.log(err);
-		 });
+//		$http.get("getStaff", {
+//			 "Accept": "application/json;charset=utf-8",
+//			 "Accept-Charset": "charset=utf-8"
+//		 }).then(function(response){
+//			 $scope.$root.user = response.data;
+//		 }, function(err){
+//			 console.log(err);
+//		 });
 		
 		
 		

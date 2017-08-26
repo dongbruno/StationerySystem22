@@ -7,14 +7,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
-
 import citi.hibernate.dao.StaffDao;
 import citi.hibernate.entity.Orders;
 import citi.hibernate.entity.Staff;
@@ -30,7 +27,12 @@ StaffDao staffDaoImpl;
 	public Staff getStaff(HttpSession session) {
 		// TODO Auto-generated method stub
 		Staff staff = (Staff) session.getAttribute("staff");
-		//insertStaff(staff);
+		String soeid = (String) session.getAttribute("soeid");
+		HibernateUtil.openSession();
+		if(staffDaoImpl.findBySoeid(soeid) == null) {
+			staffDaoImpl.insertStaff(staff);
+		}
+		HibernateUtil.closeSession();
 		return staff;
 	}
 	@Override
@@ -45,7 +47,12 @@ StaffDao staffDaoImpl;
 	    	session.setAttribute("staff", newStaff);
 		}
 		Staff staff = (Staff) session.getAttribute("staff");
-		//insertStaff(staff);
+		String soeid = (String) session.getAttribute("soeid");
+		HibernateUtil.openSession();
+		if(staffDaoImpl.findBySoeid(soeid) == null) {
+			staffDaoImpl.insertStaff(staff);
+		}
+		HibernateUtil.closeSession();
 		return staff;
 	}
 
@@ -64,26 +71,14 @@ StaffDao staffDaoImpl;
 		int unique = generateUniqueValue();
 		String location = generateLocation();
 		String unit = generateUnit();
-		Staff staff = new Staff("YB"+unique, "张三"+unique, false, "LJZ", "VIII", "muni");
-//		Staff staff = new Staff("YB"+unique, "张三"+unique, false, location, unit, "team"+unique);
-    	insertStaff(staff);
+		//Staff staff = new Staff("YB"+unique, "张三"+unique, false, "LJZ", "VIII", "muni");
+		Staff staff = new Staff("YB"+unique, "张三"+unique, false, location, unit, "team"+unique);
 		return staff;
-	}
-	@Override
-	public boolean insertStaff(Staff staff) {
-		// TODO Auto-generated method stub
-//		if(staffDaoImpl.findByExample(staff)==null){
-		HibernateUtil.openSession();
-    	staffDaoImpl.insertStaff(staff);
-    	HibernateUtil.closeSession();
-//		}
-		return true;
 	}
 	private String generateUnit() {
 		// TODO Auto-generated method stub
 		String[] units = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
 		int index = (int) (Math.random()*units.length);
-		
 		return units[index];
 	}
 

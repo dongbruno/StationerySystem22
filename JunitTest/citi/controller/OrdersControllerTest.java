@@ -19,10 +19,10 @@ public class OrdersControllerTest {
 	OrdersService ordersServiceImpl;
 	@Test
 	public void testGetOrders(HttpSession session) {
-//	List<Orders> result = ordersServiceImpl.getOrders(session);
-//	Gson gson=new Gson();
-//    String obj=gson.toJson(result);
-//    System.out.println(obj);
+	List<Orders> result = ordersServiceImpl.getOrders(session);
+	Gson gson=new Gson();
+    String obj=gson.toJson(result);
+    System.out.println(obj);
 		
 	}
 

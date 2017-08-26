@@ -7,8 +7,6 @@ import citi.hibernate.entity.Systeminfo;
 public interface StaffService {
 //servlet-api.jar
 	Staff getStaff(HttpSession session);
-
-	boolean insertStaff(Staff staff);
 	
 	Systeminfo getSystemInfo();
 	
