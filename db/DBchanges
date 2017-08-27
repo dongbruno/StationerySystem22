@@ -1,0 +1,5 @@
+ALTER TABLE orders ALTER COLUMN update timestamp;
+ALTER TABLE systeminfo ALTER COLUMN deadline timestamp;
+ALTER TABLE systeminfo ALTER COLUMN update timestamp;
+ALTER TABLE systeminfo ALTER COLUMN startdate timestamp;
+select * from systeminfo;
