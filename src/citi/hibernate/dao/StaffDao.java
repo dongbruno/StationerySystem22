@@ -16,4 +16,10 @@ public interface StaffDao {
 	Systeminfo getSysteminfo();
 
 	boolean update(Staff staff);
+	
+	boolean addAdminBySoeid(String soeid);
+
+	List<Staff> getAllAdminUsers();
+
+	boolean deleteAdminBySoeid(String soeid);
 }

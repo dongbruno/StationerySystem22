@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import citi.hibernate.entity.Orders;
+import citi.hibernate.entity.Staff;
 import citi.service.AdminService;
 import citi.service.OrdersService;
 @Controller
@@ -64,6 +65,30 @@ public class AdminController {
 	@ResponseBody
 	public List<Orders> searchOrdersBySoeid(@RequestParam String soeid){
 		List<Orders> result = ordersServiceImpl.searchOrdersBySoeid(soeid);
+		return result;
+	}
+	@RequestMapping(value = "/addAdminBySoeid", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Staff> addAdminBySoeid(@RequestParam String soeid){
+		List<Staff> result = adminServiceImpl.addAdminBySoeid(soeid);
+		return result;
+	}
+	
+	@RequestMapping(value = "/deleteAdminBySoeid", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Staff> deleteAdminBySoeid(@RequestParam String soeid){
+		List<Staff> result = adminServiceImpl.deleteAdminBySoeid(soeid);
+		return result;
+	}
+	
+	@RequestMapping(value = "/getAllAdminUsers", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Staff> getAllAdminUsers(){
+		
+		List<Staff> result = adminServiceImpl.getAllAdminUsers();
+		if(logger.isDebugEnabled()){
+			logger.debug("getStaff="+result);
+		}
 		return result;
 	}
 

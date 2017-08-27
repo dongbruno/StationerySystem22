@@ -23,6 +23,7 @@
 	<!-- 静态资源 -->
 	<mvc:resources mapping="/style/**" location="/style/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/js/fonts/**" location="/js/fonts/" />
 	<mvc:resources mapping="/views/**" location="/views/" />
 	<mvc:resources mapping="/index.html" location="/" />
 </beans>

@@ -5,5 +5,4 @@ public interface AdminDao {
 
 	String setNote(String note, String soeid);
 	
-	
 }

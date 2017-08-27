@@ -41,7 +41,10 @@ public class Staff implements java.io.Serializable {
 		this.team = team;
 		this.isadmin = isadmin;
 	}
-
+	public Staff(String soeid, Boolean isadmin) {
+		this.soeid = soeid;
+		this.isadmin = isadmin;
+	}
 	public String getSoeid() {
 		return this.soeid;
 	}

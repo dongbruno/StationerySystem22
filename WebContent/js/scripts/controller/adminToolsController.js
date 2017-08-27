@@ -25,6 +25,34 @@ define(['app'], function(app){
 				console.log(err);
 			})
 		}
+		$http.get("getAllAdminUsers",{
+			"Accept": "application/json;charset=utf-8",
+			"Accept-Charset": "charset=utf-8"
+		}).then(function(response){
+			$scope.adminUsers = response.data;
+		}, function(err){
+			console.log(err);
+		})
+		$scope.addAdminBySoeid = function(){
+			$http.get("addAdminBySoeid?soeid="+adminUsersForm.soeidForAdd.value.toUpperCase(),{
+				"Accept": "application/json;charset=utf-8",
+				"Accept-Charset": "charset=utf-8"
+			}).then(function(response){
+				$scope.adminUsers = response.data;
+			}, function(err){
+				console.log(err);
+			})
+		}
+		$scope.deleteAdminBySoeid = function(soeid){
+			$http.get("deleteAdminBySoeid?soeid="+soeid,{
+				"Accept": "application/json;charset=utf-8",
+				"Accept-Charset": "charset=utf-8"
+			}).then(function(response){
+				$scope.adminUsers = response.data;
+			}, function(err){
+				console.log(err);
+			})
+		}
 		
 		$scope.download = function(dlType, location){
 			var url = "download/"+dlType+"/"+location;

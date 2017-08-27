@@ -1,7 +1,13 @@
 package citi.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
+import citi.hibernate.entity.Staff;
 public interface AdminService {
+
+	List<Staff> getAllAdminUsers();
 
 	String setDeadline(String deadline, HttpSession session);
 
@@ -9,4 +15,7 @@ public interface AdminService {
 
 	String setNote(String note, HttpSession session);
 	
+	List<Staff> addAdminBySoeid(String soeid);
+
+	List<Staff> deleteAdminBySoeid(String soeid);
 }

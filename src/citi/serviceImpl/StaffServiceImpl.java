@@ -30,7 +30,7 @@ StaffDao staffDaoImpl;
 		String soeid = (String) session.getAttribute("soeid");
 		HibernateUtil.openSession();
 		Staff dbStaff = staffDaoImpl.findBySoeid(soeid);
-		if(staffDaoImpl.findBySoeid(soeid) == null) {
+		if(dbStaff == null) {
 			staffDaoImpl.insertStaff(staff);
 		}else if(dbStaff.isNeedUpdate(staff)){
 			staffDaoImpl.update(staff);
@@ -55,7 +55,7 @@ StaffDao staffDaoImpl;
 		String soeid = (String) session.getAttribute("soeid");
 		HibernateUtil.openSession();
 		Staff dbStaff = staffDaoImpl.findBySoeid(soeid);
-		if(staffDaoImpl.findBySoeid(soeid) == null) {
+		if(dbStaff == null) {
 			staffDaoImpl.insertStaff(staff);
 		}else if(dbStaff.isNeedUpdate(staff)){
 			staffDaoImpl.update(staff);

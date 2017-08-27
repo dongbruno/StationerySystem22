@@ -1,9 +1,13 @@
 package citi.serviceImpl;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import citi.export.excel.ExportExcel;
 import citi.hibernate.dao.AdminDao;
+import citi.hibernate.dao.StaffDao;
+import citi.hibernate.entity.Staff;
 import citi.hibernate.util.HibernateUtil;
 import citi.service.AdminService;
 @Service
@@ -12,6 +16,8 @@ public class AdminServiceImpl implements AdminService {
 	ExportExcel ExportExcelImpl;
 	@Resource
 	AdminDao adminDaoImpl;
+	@Resource
+	StaffDao staffDaoImpl;
 	
 	@Override
 	public String setNote(String note, HttpSession session) {
@@ -48,6 +54,40 @@ public class AdminServiceImpl implements AdminService {
 				e.printStackTrace();
 			}
 		}
+		return result;
+	}
+
+	@Override
+	public List<Staff> addAdminBySoeid(String soeid) {
+		// TODO Auto-generated method stub
+		HibernateUtil.openSession();
+		Staff dbStaff = staffDaoImpl.findBySoeid(soeid);
+		if(dbStaff == null) {
+			staffDaoImpl.insertStaff(new Staff(soeid, true));
+		}else {
+			staffDaoImpl.addAdminBySoeid(soeid);
+		}
+		List<Staff> result = staffDaoImpl.getAllAdminUsers();
+		HibernateUtil.closeSession();
+		return result;
+	}
+
+	@Override
+	public List<Staff> getAllAdminUsers() {
+		// TODO Auto-generated method stub
+		HibernateUtil.openSession();
+		List<Staff> result = staffDaoImpl.getAllAdminUsers();
+		HibernateUtil.closeSession();
+		return result;
+	}
+
+	@Override
+	public List<Staff> deleteAdminBySoeid(String soeid) {
+		// TODO Auto-generated method stub
+		HibernateUtil.openSession();
+		staffDaoImpl.deleteAdminBySoeid(soeid);
+		List<Staff> result = staffDaoImpl.getAllAdminUsers();
+		HibernateUtil.closeSession();
 		return result;
 	}
 

@@ -49,7 +49,7 @@ public class StaffDaoImpl implements StaffDao {
 	}
 	public Staff findBySoeid(String soeid) {
 		Session sessionHibernate = HibernateUtil.getSession();
-		String queryString = "from Staff s where s.soeid = ?";
+		String queryString = "select new Staff(s.soeid, s.name,s.isadmin, s.location, s.unit, s.team) from Staff s where s.soeid = ?";
 		Staff staff = (Staff) sessionHibernate.createQuery(queryString).setParameter(0, soeid).uniqueResult();
 		return staff;
 	}
@@ -62,6 +62,39 @@ public class StaffDaoImpl implements StaffDao {
 		session.beginTransaction();
 		String queryString = "update Staff s set s.name = ?, s.location = ?, s.unit = ?, s.team = ? where s.soeid = ?";
 		Query query = session.createQuery(queryString).setParameter(0, staff.getName()).setParameter(1, staff.getLocation()).setParameter(2, staff.getUnit()).setParameter(3, staff.getTeam()).setParameter(4, staff.getSoeid());
+		query.executeUpdate();
+		session.getTransaction().commit();
+		return true;
+	}
+
+	@Override
+	public boolean addAdminBySoeid(String soeid) {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSession();
+		session.beginTransaction();
+		String queryString = "update Staff s set s.isadmin = ? where s.soeid = ?";
+		Query query = session.createQuery(queryString).setParameter(0, true).setParameter(1, soeid);
+		query.executeUpdate();
+		session.getTransaction().commit();
+		return true;
+	}
+
+	@Override
+	public List<Staff> getAllAdminUsers() {
+		// TODO Auto-generated method stub
+		Session sessionHibernate = HibernateUtil.getSession();
+		String queryString = "select new Staff(s.soeid, s.isadmin) from Staff s where s.isadmin = ?";
+		List<Staff> result = (List<Staff>) sessionHibernate.createQuery(queryString).setParameter(0, true).list();
+		return result;
+	}
+
+	@Override
+	public boolean deleteAdminBySoeid(String soeid) {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSession();
+		session.beginTransaction();
+		String queryString = "update Staff s set s.isadmin = ? where s.soeid = ?";
+		Query query = session.createQuery(queryString).setParameter(0, false).setParameter(1, soeid);
 		query.executeUpdate();
 		session.getTransaction().commit();
 		return true;
