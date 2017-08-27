@@ -31,7 +31,6 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public String setDeadline(String deadline, HttpSession session) {
 		// TODO Auto-generated method stub
-		
 		 HibernateUtil.openSession();
 		 String result = adminDaoImpl.setDeadline(deadline, (String) session.getAttribute("soeid"));
          HibernateUtil.closeSession();
@@ -89,6 +88,15 @@ public class AdminServiceImpl implements AdminService {
 		List<Staff> result = staffDaoImpl.getAllAdminUsers();
 		HibernateUtil.closeSession();
 		return result;
+	}
+
+	@Override
+	public String setStartDate(String startDate, HttpSession session) {
+		// TODO Auto-generated method stub
+		 HibernateUtil.openSession();
+		 String result = adminDaoImpl.setStartDate(startDate, (String) session.getAttribute("soeid"));
+         HibernateUtil.closeSession();
+		 return result;
 	}
 
 	

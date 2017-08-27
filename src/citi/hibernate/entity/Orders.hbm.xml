@@ -15,7 +15,7 @@
         <property generated="never" lazy="false" name="quantity" optimistic-lock="true" type="java.lang.Integer" unique="false">
             <column name="QUANTITY"/>
         </property>
-        <property generated="never" lazy="false" name="update" optimistic-lock="true" type="date" unique="false">
+        <property generated="never" lazy="false" name="update" optimistic-lock="true" type="timestamp" unique="false">
             <column length="8" name="UPDATE"/>
         </property>
     </class>

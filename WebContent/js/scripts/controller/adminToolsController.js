@@ -1,7 +1,14 @@
 define(['app'], function(app){
 	app.controller('adminToolsCtrl', function($scope, $http){
+		$scope.setStartDate = function(){
+			$http.get("setStartDate?startDate="+startDateForm.date.value).then(function(response){
+				alert(response.data["result"]);
+			}, function(err){
+				alert(err);
+			})
+		}
 		$scope.setDeadline = function(){
-			$http.get("setDeadline?deadline="+dateform.date.value).then(function(response){
+			$http.get("setDeadline?deadline="+deadlineForm.date.value).then(function(response){
 				alert(response.data["result"]);
 			}, function(err){
 				alert(err);
@@ -16,7 +23,7 @@ define(['app'], function(app){
 		}
 		
 		$scope.searchOrdersBySoeid = function(){
-			$http.get("searchOrdersBySoeid?soeid="+soeidform.soeidForSerch.value,{
+			$http.get("searchOrdersBySoeid?soeid="+soeidform.soeidForSerch.value.toUpperCase(),{
 				"Accept": "application/json;charset=utf-8",
 				"Accept-Charset": "charset=utf-8"
 			}).then(function(response){

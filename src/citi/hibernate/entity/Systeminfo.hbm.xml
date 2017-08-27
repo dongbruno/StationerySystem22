@@ -9,13 +9,13 @@
         <property generated="never" lazy="false" name="note" optimistic-lock="true" type="string" unique="false">
             <column name="NOTE"/>
         </property>
-        <property generated="never" lazy="false" name="startdate" optimistic-lock="true" type="date" unique="false">
+        <property generated="never" lazy="false" name="startdate" optimistic-lock="true" type="timestamp" unique="false">
             <column length="8" name="STARTDATE"/>
         </property>
-        <property generated="never" lazy="false" name="deadline" optimistic-lock="true" type="date" unique="false">
+        <property generated="never" lazy="false" name="deadline" optimistic-lock="true" type="timestamp" unique="false">
             <column length="8" name="DEADLINE"/>
         </property>
-        <property generated="never" lazy="false" name="update" optimistic-lock="true" type="date" unique="false">
+        <property generated="never" lazy="false" name="update" optimistic-lock="true" type="timestamp" unique="false">
             <column length="8" name="UPDATE"/>
         </property>
         <property generated="never" lazy="false" name="operator" optimistic-lock="true" type="string" unique="false">

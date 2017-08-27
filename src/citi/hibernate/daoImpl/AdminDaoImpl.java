@@ -16,7 +16,7 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
-		String queryString = "update Systeminfo s set s.note = ?, s.date = ?, s.operator = ? where s.systemId = ?";
+		String queryString = "update Systeminfo s set s.note = ?, s.update = ?, s.operator = ? where s.systemid = ?";
 		Query query = session.createQuery(queryString).setParameter(0, note).setParameter(1, new Date()).setParameter(2, soeid).setParameter(3, 1);
 		query.executeUpdate();
 		session.getTransaction().commit();
@@ -31,7 +31,7 @@ public class AdminDaoImpl implements AdminDao {
 		}else{
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
-		String queryString = "update Systeminfo s set s.deadline = ?, s.date = ?, s.operator = ? where s.systemId = ?";
+		String queryString = "update Systeminfo s set s.deadline = ?, s.update = ?, s.operator = ? where s.systemid = ?";
 		Query query = session.createQuery(queryString).setParameter(0, toDateFromStr(deadline)).setParameter(1, new Date()).setParameter(2, soeid).setParameter(3, 1);
 		query.executeUpdate();
 		session.getTransaction().commit();
@@ -48,6 +48,22 @@ public class AdminDaoImpl implements AdminDao {
 				e.printStackTrace();
 			}
 			return date;
+	}
+
+	@Override
+	public String setStartDate(String startDate, String soeid) {
+		// TODO Auto-generated method stub
+		if(startDate.equalsIgnoreCase("")){
+			return "格式错误，设置开始日期失败！";
+		}else{
+		Session session = HibernateUtil.getSession();
+		session.beginTransaction();
+		String queryString = "update Systeminfo s set s.startdate = ?, s.update = ?, s.operator = ? where s.systemid = ?";
+		Query query = session.createQuery(queryString).setParameter(0, toDateFromStr(startDate)).setParameter(1, new Date()).setParameter(2, soeid).setParameter(3, 1);
+		query.executeUpdate();
+		session.getTransaction().commit();
+		return "设置开始日期成功！";
+		}
 	}
 
 }

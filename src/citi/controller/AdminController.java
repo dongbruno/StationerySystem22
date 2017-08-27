@@ -32,6 +32,14 @@ public class AdminController {
 	AdminService adminServiceImpl;
 	@Resource
 	OrdersService ordersServiceImpl;
+	@RequestMapping(value = "/setStartDate", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, String> setStartDate(@RequestParam String startDate, HttpSession session){
+		String result = adminServiceImpl.setStartDate(startDate, session);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("result", result);
+		return map;
+	}
 	@RequestMapping(value = "/setDeadline", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, String> setDeadline(@RequestParam String deadline, HttpSession session){

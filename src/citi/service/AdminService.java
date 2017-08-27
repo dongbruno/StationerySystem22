@@ -18,4 +18,6 @@ public interface AdminService {
 	List<Staff> addAdminBySoeid(String soeid);
 
 	List<Staff> deleteAdminBySoeid(String soeid);
+
+	String setStartDate(String startDate, HttpSession session);
 }
