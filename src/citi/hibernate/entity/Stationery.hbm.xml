@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated Aug 24, 2017 9:35:40 PM by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="false">
     <class catalog="SSDB" dynamic-insert="false" dynamic-update="false" mutable="true" name="citi.hibernate.entity.Stationery" optimistic-lock="version" polymorphism="implicit" schema="PUBLIC" select-before-update="false" table="STATIONERY">
         <id name="stationeryid" type="int">
             <column name="STATIONERYID"/>
@@ -18,7 +19,7 @@
         <property generated="never" lazy="false" name="price" optimistic-lock="true" type="big_decimal" unique="false">
             <column name="PRICE" precision="65535" scale="32767"/>
         </property>
-        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="orderses" optimistic-lock="true" sort="unsorted" table="ORDERS">
+        <set embed-xml="true" fetch="select" inverse="true" lazy="false" mutable="true" name="orderses" optimistic-lock="true" sort="unsorted" table="ORDERS">
             <key on-delete="noaction">
                 <column name="STATIONERYID" not-null="true"/>
             </key>

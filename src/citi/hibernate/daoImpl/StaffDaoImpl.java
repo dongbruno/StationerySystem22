@@ -28,9 +28,9 @@ public class StaffDaoImpl implements StaffDao {
 	public Systeminfo getSysteminfo() {
 		// TODO Auto-generated method stub
 		Session sessionHibernate = HibernateUtil.getSession();
-		String queryString = "from Systeminfo s where s.systemid = ?";
-		Systeminfo systemInfo = (Systeminfo) sessionHibernate.createQuery(queryString).setParameter(0, 1).uniqueResult();
-		return systemInfo;
+		String queryString = "select new Systeminfo(s.note, s.startdate, s.deadline, s.update, s.operator) from Systeminfo s where s.systemid = ?";
+		Systeminfo systeminfo = (Systeminfo) sessionHibernate.createQuery(queryString).setParameter(0, 1).uniqueResult();
+		return systeminfo;
 	}
 
 	/*private String toStringFromDate(Date date) {

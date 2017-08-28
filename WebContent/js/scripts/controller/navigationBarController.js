@@ -1,10 +1,27 @@
 define(['app'], function(app){
 	app.controller('navigationBarCtrl', function($scope, $http){
 		$scope.$root.user = {};
-		$scope.$root.systemInfo = {};
+		$scope.$root.systeminfo = {};
 		$scope.$root.number = $scope.$root.number || 0;
-		$scope.$root.isDeadlineHide = true;
-		
+		$scope.$root.isDeadlineShow = false;
+		$scope.getSysteminfo = function(){
+			$http.get("getSysteminfo", {
+				 "Accept": "application/json;charset=utf-8",
+				 "Accept-Charset": "charset=utf-8"
+			 }).then(function(response){
+				 $scope.$root.systeminfo = response.data;
+				 var deadTime = new Date($scope.$root.systeminfo.deadline);
+				 var nowTime = new Date();
+					if (deadTime < nowTime ) {
+						$scope.$root.isDeadlineShow = true;
+					} else {
+							$scope.$root.isDeadlineShow = false;
+					}
+			 }, function(err){
+				 console.log(err);
+			 });
+		}
+		$scope.getSysteminfo();
 		$scope.defaultUser = function(){
 			$http.get("getStaffTest?isDefault="+true, {
 				 "Accept": "application/json;charset=utf-8",
@@ -15,6 +32,8 @@ define(['app'], function(app){
 				 console.log(err);
 			 });
 		}
+		$scope.defaultUser();
+		
 		$scope.changeUser = function(){
 			$http.get("getStaffTest?isDefault="+false, {
 				 "Accept": "application/json;charset=utf-8",
@@ -26,25 +45,6 @@ define(['app'], function(app){
 			 });
 		}
 		
-		$http.get("getSysteminfo", {
-			 "Accept": "application/json;charset=utf-8",
-			 "Accept-Charset": "charset=utf-8"
-		 }).then(function(response){
-			 $scope.$root.systemInfo = response.data;
-			 var deadTime = parseInt($scope.$root.systemInfo.deadline);
-			 var nowTime = new Date().getTime();
-				if (deadTime < nowTime ) {
-					$scope.$root.isDeadlineHide = false;
-				} else {
-					if (deadTime > nowTime ) {
-						$scope.$root.isDeadlineHide = true;
-					} else {
-						$scope.$root.isDeadlineHide = false;
-					}
-				}
-		 }, function(err){
-			 console.log(err);
-		 });
 //		$http.get("getStaff", {
 //			 "Accept": "application/json;charset=utf-8",
 //			 "Accept-Charset": "charset=utf-8"

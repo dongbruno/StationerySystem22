@@ -71,9 +71,9 @@ StaffDao staffDaoImpl;
 	public Systeminfo getSysteminfo() {
 		// TODO Auto-generated method stub
 		HibernateUtil.openSession();
-		Systeminfo systemInfo = staffDaoImpl.getSysteminfo();
+		Systeminfo systeminfo = staffDaoImpl.getSysteminfo();
         HibernateUtil.closeSession();
-        return systemInfo;
+        return systeminfo;
 	}
 
 	private Staff generateStaff() {

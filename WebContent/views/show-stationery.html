@@ -8,7 +8,7 @@
 		<input type="text" placeholder="Search" ng-model="searchText">
 		<input type="submit" value=" ">
 	</div>
-	<div class="top-header-deadline" ng-show="!isDeadlineHide">
+	<div class="top-header-deadline" ng-show="isDeadlineShow">
 			<div class="alert alert-dismissable alert-danger">
 				 <button type="button" ng-click="hideDeadline()" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 				<strong>警告：</strong>已经过了截止日期，订购文具可能无效！

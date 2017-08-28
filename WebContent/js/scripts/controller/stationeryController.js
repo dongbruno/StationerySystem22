@@ -7,7 +7,7 @@ define(
 							function($scope, $http) {
 								$scope.stationery = [];
 
-								// alert($scope.$root.systemInfo.deadline+'now='+new
+								// alert($scope.$root.systeminfo.deadline+'now='+new
 								// Date().getTime());
 								$scope.$root.cartStationery = $scope.$root.cartStationery
 										|| [];
@@ -43,7 +43,7 @@ define(
 								
 
 								$scope.hideDeadline = function() {
-									$scope.$root.isDeadlineHide = true;
+									$scope.$root.isDeadlineShow = false;
 								}
 
 							});

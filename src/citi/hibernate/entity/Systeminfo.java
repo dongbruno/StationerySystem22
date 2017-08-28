@@ -30,7 +30,13 @@ public class Systeminfo implements java.io.Serializable {
 		this.update = update;
 		this.operator = operator;
 	}
-
+	public Systeminfo(String note, Date startdate, Date deadline, Date update, String operator) {
+		this.note = note;
+		this.startdate = startdate;
+		this.deadline = deadline;
+		this.update = update;
+		this.operator = operator;
+	}
 	public int getSystemid() {
 		return this.systemid;
 	}
