@@ -33,7 +33,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		// HQL String queryString = "select orders.stationery.stationeryid as stationeryid,orders.stationery.name as name,orders.stationery.price as price,orders.quantity as quantity,orders.stationery.standard as standard,orders.stationery.kind as kind from Orders as orders where orders.staff.soeid = ?";
 		String queryString = "select new Orders(orders.ordersid,staff,stationery,orders.quantity,orders.update) from Orders orders left join orders.staff staff left join orders.stationery stationery where staff.soeid = ? and orders.update > ? and orders.update < ?";
 		String soeid = (String) session.getAttribute("soeid");
-		List<Orders> orders = sessionHibernate.createQuery(queryString).setParameter(0, soeid).setDate(1, startdate).setDate(2, deadline).list();
+		List<Orders> orders = sessionHibernate.createQuery(queryString).setParameter(0, soeid).setDate(1, startdate).setDate(2, deadline).setCacheable(true).list();
 		return orders;
 	}
 
@@ -46,7 +46,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		Session sessionHibernate = HibernateUtil.getSession();
 		//String queryString = "select orders.stationery.stationeryid as stationeryid,orders.stationery.name as name,orders.stationery.price as price,orders.quantity as quantity,orders.stationery.standard as standard,orders.stationery.kind as kind from Orders as orders where orders.staff.soeid = ?";
 		String queryString = "select new Orders(orders.ordersid,staff,stationery,orders.quantity,orders.update) from Orders orders left join orders.staff staff left join orders.stationery stationery where staff.soeid = ? and orders.update > ? and orders.update < ?";
-		List<Orders> orders = sessionHibernate.createQuery(queryString).setParameter(0, soeid).setDate(1, startdate).setDate(2, deadline).list();
+		List<Orders> orders = sessionHibernate.createQuery(queryString).setParameter(0, soeid).setDate(1, startdate).setDate(2, deadline).setCacheable(true).list();
 		return orders;
 	}
 	@Override
@@ -91,7 +91,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		Session session = HibernateUtil.getSession();
 		String queryString = "select orders.ordersid from Orders orders left join orders.stationery stationery left join orders.staff staff where stationery.stationeryid = ? and staff.soeid = ? and orders.update > ? and orders.update < ?";
 		String ordersid = (String) session.createQuery(queryString).setParameter(0, stationeryid).setParameter(1, soeid)
-				.setDate(2, startdate).setDate(3, deadline).uniqueResult();
+				.setDate(2, startdate).setDate(3, deadline).setCacheable(true).uniqueResult();
 		return ordersid;
 	}
 
@@ -114,7 +114,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		Date deadline = systeminfo.getDeadline();
 		Session session = HibernateUtil.getSession();
 		String oldQueryString = "select orders.quantity from Orders orders where orders.ordersid = ? and orders.update > ? and orders.update < ?";
-		int oldQuantity = (int) session.createQuery(oldQueryString).setParameter(0, ordersid).setDate(1, startdate).setDate(2, deadline).uniqueResult();
+		int oldQuantity = (int) session.createQuery(oldQueryString).setParameter(0, ordersid).setDate(1, startdate).setDate(2, deadline).setCacheable(true).uniqueResult();
 		quantity += oldQuantity;
 
 		session.beginTransaction();
@@ -134,7 +134,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		Session sessionHibernate = HibernateUtil.getSession();
 		//String queryString = "select orders.stationery.stationeryid as stationeryid,orders.stationery.name as name,orders.stationery.price as price,orders.quantity as quantity,orders.stationery.standard as standard,orders.stationery.kind as kind from Orders as orders where orders.staff.soeid = ?";
 		String queryString = "select stationery.kind,stationery.name,stationery.standard,stationery.price,sum(orders.quantity) from Orders orders left join orders.staff staff left join orders.stationery stationery where staff.location = ? and orders.update > ? and orders.update < ? group by stationery.stationeryid";
-		List orders = sessionHibernate.createQuery(queryString).setParameter(0, location).setDate(1, startdate).setDate(2, deadline).list();
+		List orders = sessionHibernate.createQuery(queryString).setParameter(0, location).setDate(1, startdate).setDate(2, deadline).setCacheable(true).list();
 		return orders;
 	}
 
@@ -147,7 +147,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		Session sessionHibernate = HibernateUtil.getSession();
 		//String queryString = "select orders.stationery.stationeryid as stationeryid,orders.stationery.name as name,orders.stationery.price as price,orders.quantity as quantity,orders.stationery.standard as standard,orders.stationery.kind as kind from Orders as orders where orders.staff.soeid = ?";
 		String queryString = "select stationery.kind,stationery.name,stationery.standard,stationery.price,sum(orders.quantity) from Orders orders left join orders.staff staff left join orders.stationery stationery where staff.location = ? and staff.unit = ? and orders.update > ? and orders.update < ? group by stationery.stationeryid";
-		List orders = sessionHibernate.createQuery(queryString).setParameter(0, location).setParameter(1, unit).setDate(2, startdate).setDate(3, deadline).list();
+		List orders = sessionHibernate.createQuery(queryString).setParameter(0, location).setParameter(1, unit).setDate(2, startdate).setDate(3, deadline).setCacheable(true).list();
 		return orders;
 	}
 
@@ -159,7 +159,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		Date deadline = systeminfo.getDeadline();
 		Session sessionHibernate = HibernateUtil.getSession();
 		String queryString = "select distinct staff.unit from Orders orders left join orders.staff staff left join orders.stationery stationery where staff.location = ? and orders.update > ? and orders.update < ?";
-		List<String> units = sessionHibernate.createQuery(queryString).setParameter(0, location).setDate(1, startdate).setDate(2, deadline).list();
+		List<String> units = sessionHibernate.createQuery(queryString).setParameter(0, location).setDate(1, startdate).setDate(2, deadline).setCacheable(true).list();
 		return units;
 	}
 
@@ -171,7 +171,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		Date deadline = systeminfo.getDeadline();
 		Session sessionHibernate = HibernateUtil.getSession();
 		String queryString = "select distinct staff.team from Orders orders left join orders.staff staff left join orders.stationery stationery where staff.location = ? and staff.unit = ? and orders.update > ? and orders.update < ?";
-		List<String> teams = sessionHibernate.createQuery(queryString).setParameter(0, location).setParameter(1, unit).setDate(2, startdate).setDate(3, deadline).list();
+		List<String> teams = sessionHibernate.createQuery(queryString).setParameter(0, location).setParameter(1, unit).setDate(2, startdate).setDate(3, deadline).setCacheable(true).list();
 		return teams;
 	}
 
@@ -183,7 +183,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		Date deadline = systeminfo.getDeadline();
 		Session sessionHibernate = HibernateUtil.getSession();
 		String queryString = "select distinct staff.soeid from Orders orders left join orders.staff staff left join orders.stationery stationery where staff.location = ? and staff.unit = ? and staff.team = ? and orders.update > ? and orders.update < ?";
-		List<String> staffs = sessionHibernate.createQuery(queryString).setParameter(0, location).setParameter(1, unit).setParameter(2, team).setDate(3, startdate).setDate(4, deadline).list();
+		List<String> staffs = sessionHibernate.createQuery(queryString).setParameter(0, location).setParameter(1, unit).setParameter(2, team).setDate(3, startdate).setDate(4, deadline).setCacheable(true).list();
 		return staffs;
 	}
 
@@ -195,7 +195,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		Date deadline = systeminfo.getDeadline();
 		Session sessionHibernate = HibernateUtil.getSession();
 		String queryString = "select staff.name,staff.soeid,orders.quantity,stationery.standard,stationery.name from Orders orders left join orders.staff staff left join orders.stationery stationery where staff.soeid = ? and orders.update > ? and orders.update < ?";
-		List orders = sessionHibernate.createQuery(queryString).setParameter(0, staff).setDate(1, startdate).setDate(2, deadline).list();
+		List orders = sessionHibernate.createQuery(queryString).setParameter(0, staff).setDate(1, startdate).setDate(2, deadline).setCacheable(true).list();
 		return orders;
 	}
 

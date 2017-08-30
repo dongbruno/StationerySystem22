@@ -29,7 +29,7 @@ public class StaffDaoImpl implements StaffDao {
 		// TODO Auto-generated method stub
 		Session sessionHibernate = HibernateUtil.getSession();
 		String queryString = "select new Systeminfo(s.note, s.startdate, s.deadline, s.update, s.operator) from Systeminfo s where s.systemid = ?";
-		Systeminfo systeminfo = (Systeminfo) sessionHibernate.createQuery(queryString).setParameter(0, 1).uniqueResult();
+		Systeminfo systeminfo = (Systeminfo) sessionHibernate.createQuery(queryString).setParameter(0, 1).setCacheable(true).uniqueResult();
 		return systeminfo;
 	}
 
@@ -50,7 +50,7 @@ public class StaffDaoImpl implements StaffDao {
 	public Staff findBySoeid(String soeid) {
 		Session sessionHibernate = HibernateUtil.getSession();
 		String queryString = "select new Staff(s.soeid, s.name,s.isadmin, s.location, s.unit, s.team) from Staff s where s.soeid = ?";
-		Staff staff = (Staff) sessionHibernate.createQuery(queryString).setParameter(0, soeid).uniqueResult();
+		Staff staff = (Staff) sessionHibernate.createQuery(queryString).setParameter(0, soeid).setCacheable(true).uniqueResult();
 		return staff;
 	}
 
@@ -84,7 +84,7 @@ public class StaffDaoImpl implements StaffDao {
 		// TODO Auto-generated method stub
 		Session sessionHibernate = HibernateUtil.getSession();
 		String queryString = "select new Staff(s.soeid, s.isadmin) from Staff s where s.isadmin = ?";
-		List<Staff> result = (List<Staff>) sessionHibernate.createQuery(queryString).setParameter(0, true).list();
+		List<Staff> result = (List<Staff>) sessionHibernate.createQuery(queryString).setParameter(0, true).setCacheable(true).list();
 		return result;
 	}
 
@@ -94,7 +94,7 @@ public class StaffDaoImpl implements StaffDao {
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		String queryString = "update Staff s set s.isadmin = ? where s.soeid = ?";
-		Query query = session.createQuery(queryString).setParameter(0, false).setParameter(1, soeid);
+		Query query = session.createQuery(queryString).setParameter(0, false).setCacheable(true).setParameter(1, soeid);
 		query.executeUpdate();
 		session.getTransaction().commit();
 		return true;

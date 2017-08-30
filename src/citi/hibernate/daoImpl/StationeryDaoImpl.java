@@ -27,7 +27,7 @@ public class StationeryDaoImpl implements StationeryDao {
 	@Override
 	public List<Stationery> getStationery() {
 			Session session = HibernateUtil.getSession();
-			List<Stationery> result = session.createQuery("select new Stationery(stationery.stationeryid, stationery.kind, stationery.name, stationery.standard, stationery.price) from Stationery stationery").list();
+			List<Stationery> result = session.createQuery("select new Stationery(stationery.stationeryid, stationery.kind, stationery.name, stationery.standard, stationery.price) from Stationery stationery").setCacheable(true).list();
 			return result;
 		
 	}

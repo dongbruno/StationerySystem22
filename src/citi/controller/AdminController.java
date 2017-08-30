@@ -84,18 +84,29 @@ public class AdminController {
 	
 	@RequestMapping(value = "/deleteAdminBySoeid", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Staff> deleteAdminBySoeid(@RequestParam String soeid){
+	public List<Staff> deleteAdminBySoeid(@RequestParam String soeid, HttpSession session){
 		List<Staff> result = adminServiceImpl.deleteAdminBySoeid(soeid);
+		String sessionSoeid = (String) session.getAttribute("soeid");
+		for(Staff s :result) {
+			if(s.getSoeid().equals("YD83768")||s.getSoeid().equals(sessionSoeid)) {
+				s.setIsadmin(false);
+			}
+		}
 		return result;
 	}
 	
 	@RequestMapping(value = "/getAllAdminUsers", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Staff> getAllAdminUsers(){
-		
+	public List<Staff> getAllAdminUsers(HttpSession session){
 		List<Staff> result = adminServiceImpl.getAllAdminUsers();
 		if(logger.isDebugEnabled()){
 			logger.debug("getStaff="+result);
+		}
+		String sessionSoeid = (String) session.getAttribute("soeid");
+		for(Staff s :result) {
+			if(s.getSoeid().equals("YD83768")||s.getSoeid().equals(sessionSoeid)) {
+				s.setIsadmin(false);
+			}
 		}
 		return result;
 	}

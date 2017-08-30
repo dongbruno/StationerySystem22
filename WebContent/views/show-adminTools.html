@@ -103,8 +103,8 @@
 			value="增加" />
 	</form>
 	<div class="clearfix"></div>
-	<div ng-repeat="admins in adminUsers">
-	SoeId:{{admins.soeid}};
-	<button ng-click="deleteAdminBySoeid(admins.soeid)">删除</button>
+	<div ng-repeat="admin in adminUsers">
+	SoeId:{{admin.soeid}};
+	<button ng-if="admin.isadmin" ng-click="deleteAdminBySoeid(admin.soeid)">删除</button>
 	</div>
 </div>

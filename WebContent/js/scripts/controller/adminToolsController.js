@@ -60,7 +60,6 @@ define(['app'], function(app){
 				console.log(err);
 			})
 		}
-		
 		$scope.download = function(dlType, location){
 			var url = "download/"+dlType+"/"+location;
 			window.location.href = url;
