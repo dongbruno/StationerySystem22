@@ -48,16 +48,16 @@
 	<br>
 	<form name="startDateForm" ng-submit="setStartDate()">
 		<input type="text" name="date" id="d241"
-			onfocus="WdatePicker({lang:'zh-cn', dateFmt:'yyyy年MM月dd日 HH时mm分ss秒'})"
-			class="Wdate" style="width: 250px" value="" /> <input type="submit"
+			onfocus="WdatePicker({lang:'zh-cn', dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+			class="Wdate" style="width: 250px" ng-model="startStr" /> <input type="submit"
 			value="设置开始时间" />
 	</form>
 	<div class="clearfix"></div>
 	<br>
 	<form name="deadlineForm" ng-submit="setDeadline()">
 		<input type="text" name="date" id="d242"
-			onfocus="WdatePicker({lang:'zh-cn', dateFmt:'yyyy年MM月dd日 HH时mm分ss秒'})"
-			class="Wdate" style="width: 250px" value="" /> <input type="submit"
+			onfocus="WdatePicker({lang:'zh-cn', dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+			class="Wdate" style="width: 250px" ng-model="endStr" /> <input type="submit"
 			value="设置截止时间" />
 	</form>
 	<div class="clearfix"></div>

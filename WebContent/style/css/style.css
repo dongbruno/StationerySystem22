@@ -171,9 +171,9 @@ ul.top-nav li span {
 .top-nav ul li.cart {
 	position: relative;
 	top: 15px;
-	width: 38px;
+	width: 4.4%;
 	height: 35px;
-	left: 480px;
+	left: 35%;
 	display: inline-block;
 	background: url(../images/cart.png) no-repeat 0px 6px;
 	background-size: 100% 100%;
@@ -181,7 +181,7 @@ ul.top-nav li span {
 .top-nav ul li.welcome {
 	position: relative;
 	top: 25px;
-	left: 535px;
+	left: 41%;
 	display: inline-block;
 	background-size: 100% 100%;
 }
@@ -198,9 +198,9 @@ ul.top-nav li span {
 	background-size: 100% 100%;
 }
 .top-nav ul li a.quantity {
-	position: absolute;
+	position: relative;
 	padding: 0 0 0 8px;
-	left: 8px;
+	left: 30%;
 	top: -12px;
 	cursor: pointer;
 	font-weight: 400;
@@ -373,18 +373,18 @@ nav a#pull {
 }
 
 .top-header-search-box {
-	position: absolute;
-	right: 850px;
-	top: 117px;
+	position: relative;
+	left: 65%;
+	top: -23px;
 	width: 213px;
 	z-index: 999;
 }
 .top-header-deadline {
-	position: absolute;
-	right: 200px;
-	top: 100px;
-	width: 400px;
-	height:30px;
+	position: relative;
+	left:15%;
+	top: -57px;
+	width: 45%;
+	height:25px;
 	z-index: 999;
 }
 .top-header-search-box input[type="text"] {
@@ -410,7 +410,7 @@ nav a#pull {
 
 .top-header-search-box input[type="submit"] {
 	position: absolute;
-	top: 0px;
+	top: 22px;
 	background: url(../images/search-icon.png) no-repeat 0px 2px;
 	border: none;
 	outline: none;

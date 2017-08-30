@@ -33,15 +33,15 @@
 
 			<td colspan="2">总价格：{{totalPrice()|number:2}}元</td>
 			<td>
-				<button ng-if="!isSaved" type="button" class="btn btn-danger"
+				<button ng-disabled="isDeadline" ng-if="!isSaved" type="button" class="btn btn-danger"
 					ng-click="saveOrder()">保存订单</button>
-				<button ng-if="isSaved" type="button" class="btn btn-danger"
+				<button ng-disabled="isDeadline" ng-if="isSaved" type="button" class="btn btn-danger"
 					ng-click="modifyOrder()">修改订单</button>
 			</td>
 		</tr>
 	</table>
 	</div>
-	<div class="col-md-4 column" ng-show="!isNoteHide">
+	<div class="col-md-3 column note" ng-show="!isNoteHide">
 			<div class="alert alert-dismissable alert-success">
 				 <button type="button" ng-click="hideNote()" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 				<h4>

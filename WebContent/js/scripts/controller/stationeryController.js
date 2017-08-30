@@ -12,6 +12,9 @@ define(
 								$scope.$root.cartStationery = $scope.$root.cartStationery
 										|| [];
 								$scope.addToCart = function(newItem) {
+									if($scope.$root.isDeadline){
+										alert("订购活动已经结束或者还未开始，不能订购文具！")
+									}else{
 									var isContained = $scope.$root.cartStationery
 											.some(function(item, key) {
 												if (item.stationeryid == newItem.stationeryid) {
@@ -29,6 +32,7 @@ define(
 										$scope.$root.number += 1;
 
 									}
+								}
 								}
 								$http.get(
 												"getStationery",

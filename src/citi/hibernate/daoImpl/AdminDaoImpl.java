@@ -39,7 +39,7 @@ public class AdminDaoImpl implements AdminDao {
 		}
 	}
 	private Date toDateFromStr(String sourceTime){
-		SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = null;
 	         try {
 			 date = format.parse(sourceTime);
